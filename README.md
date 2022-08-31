@@ -1,6 +1,6 @@
-# 🚀 Welcome to your new awesome project!
+# React Sample App
 
-This project has been created using **webpack-cli**, you can now run
+This is a sample React app, where you can browse through posts of users.
 
 ```
 npm run build
