@@ -1,12 +1,17 @@
 {
-  "name": "react-graphql-sample",
+  "name": "react-sample-app",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.2",
+    "react-router-dom": "^6.3.0",
     "reflect-metadata": "^0.1.13",
+    "styled-components": "^5.3.5",
     "tsyringe": "^4.7.0",
     "typescript": "^4.8.2",
     "web-vitals": "^2.1.4"
@@ -24,14 +29,17 @@
     "@types/jest": "^29.0.0",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
+    "@types/styled-components": "^5.1.26",
     "@webpack-cli/generators": "^2.5.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^29.0.1",
     "babel-loader": "^8.2.5",
+    "babel-plugin-styled-components": "^2.0.7",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^6.7.1",
+    "dotenv-webpack": "^8.0.1",
     "eslint": "^8.23.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-import": "^2.26.0",
@@ -42,7 +50,7 @@
     "jest": "^29.0.1",
     "jest-environment-jsdom": "^29.0.1",
     "jest-watch-typeahead": "^2.1.1",
-    "json-graphql-server": "^2.3.2",
+    "json-server": "^0.17.0",
     "prettier": "^2.7.1",
     "react-app-polyfill": "^3.0.0",
     "react-test-renderer": "^18.2.0",
@@ -56,11 +64,15 @@
   },
   "description": "",
   "scripts": {
-    "start": "webpack serve --mode development --open --hot",
+    "start": "webpack serve --open --hot",
+    "start:dev": "yarn start --mode dev",
     "build": "webpack --mode production",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "server": "cd server && npx json-graphql-server db.json && cd ..",
+    "server": "cd server && npx json-server db.json && cd ..",
     "test": "jest",
     "test:watch": "yarn test --watchAll"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

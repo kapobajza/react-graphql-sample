@@ -7,3 +7,5 @@ echo "\nRunning prettier...\n"
 npx prettier --write "**/*.{js,jsx,ts,tsx}"
 echo "\nRunning typescript compiler...\n"
 npx tsc
+echo "\nRunning tests...\n"
+yarn test
