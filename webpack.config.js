@@ -46,6 +46,11 @@ module.exports = (env, args) => {
           test: /\.(css|scss)$/,
           use: ['style-loader', 'css-loader'],
         },
+        {
+          test: /\.js$/,
+          enforce: 'pre',
+          use: ['source-map-loader'],
+        },
 
         // Add your rules for custom modules here
         // Learn more about loaders from https://webpack.js.org/loaders/
