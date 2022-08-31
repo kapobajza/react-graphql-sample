@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
-module.exports = (env, args) => {
+module.exports = (env) => {
   const isProduction = process.env.NODE_ENV === 'production';
   const envPath = env.ENVIRONMENT ? `.${env.ENVIRONMENT}.env` : '.env';
 
@@ -23,8 +23,6 @@ module.exports = (env, args) => {
       new Dotenv({
         path: envPath,
       }),
-      // Add your plugins here
-      // Learn more about plugins from https://webpack.js.org/configuration/plugins/
     ],
     module: {
       rules: [
@@ -51,9 +49,6 @@ module.exports = (env, args) => {
           enforce: 'pre',
           use: ['source-map-loader'],
         },
-
-        // Add your rules for custom modules here
-        // Learn more about loaders from https://webpack.js.org/loaders/
       ],
     },
     resolve: {

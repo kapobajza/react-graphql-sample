@@ -1,11 +1,11 @@
 import 'styled-components';
 
-import { ThemeName, Colors, ApplyColorTransparencyFn } from './types';
+import { ThemeName, ColorsMap, ApplyColorTransparencyFn } from './types';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
     name: ThemeName;
-    colors: Colors;
+    colors: ColorsMap;
     applyColorTransparency: ApplyColorTransparencyFn;
     spacing: (value: number) => number;
   }
