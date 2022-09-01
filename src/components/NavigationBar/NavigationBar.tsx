@@ -17,7 +17,7 @@ const NavigationBar: FC<Props> = () => {
       <Box height={sizes.navigationBarHeight} />
       <Root>
         <div>
-          <Link to="/">{strings.postsHeader}</Link>
+          <StyledLink to="/">{strings.postsHeader}</StyledLink>
         </div>
       </Root>
       <Outlet />
@@ -38,4 +38,16 @@ const Root = styled.nav`
   right: 0;
   top: 0;
   height: ${({ theme }) => theme.sizes.navigationBarHeight};
+  background-color: ${({ theme }) => theme.colors['#FFF']};
 `;
+
+const StyledLink = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: theme.colors['#0072B1'],
+  fontSize: theme.getSizeInPx(theme.fontSizes.Size24),
+  fontWeight: 'bold',
+
+  ':visited': {
+    color: theme.colors['#000'],
+  },
+}));

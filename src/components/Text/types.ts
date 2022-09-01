@@ -6,4 +6,5 @@ export interface TextProps extends DetailedHTMLProps<HTMLAttributes<any>, any> {
   $color?: string;
   $fontWeight?: Property.FontWeight;
   $fontSize?: number;
+  $opacity?: Property.Opacity;
 }

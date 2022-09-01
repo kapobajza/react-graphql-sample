@@ -17,7 +17,10 @@ export class PostService extends AxiosService implements IPostService {
 
   getAll(params?: QueryParams<Post>) {
     return this.getRequest<Post[]>({
-      queryParams: params,
+      queryParams: {
+        ...params,
+        _expand: 'user',
+      },
     });
   }
 }

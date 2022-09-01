@@ -1,10 +1,13 @@
 import { ReactElement, cloneElement, useCallback } from 'react';
 
+import { Loader } from '../Loading';
+
 interface ListProps<TItem> {
   data: TItem[];
   renderItem: (item: TItem) => ReactElement | null;
   listKey?: ((item: TItem) => string) | string;
   renderListHeader?: () => ReactElement | null | undefined;
+  isLoading?: boolean;
 }
 
 const List = <TItem extends { id?: string; [key: string]: any }>({
@@ -12,6 +15,7 @@ const List = <TItem extends { id?: string; [key: string]: any }>({
   renderItem,
   listKey,
   renderListHeader,
+  isLoading,
 }: ListProps<TItem>): JSX.Element => {
   const mapFn = useCallback(
     (item: TItem) => {
@@ -30,6 +34,10 @@ const List = <TItem extends { id?: string; [key: string]: any }>({
     },
     [listKey, renderItem],
   );
+
+  if (isLoading) {
+    return <Loader $center />;
+  }
 
   return (
     <>

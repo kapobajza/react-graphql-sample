@@ -1,8 +1,6 @@
 import { createElement, forwardRef, PropsWithChildren, FC } from 'react';
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
 import { Property } from 'csstype';
-
-import { getFontSizeInPx } from '../../util';
 
 import { TextProps } from './types';
 
@@ -39,24 +37,27 @@ const NonStyledText = forwardRef<HTMLElement, PropsWithChildren<TextProps>>(
   },
 );
 
-const getVariantStyle = (variant: TextProps['variant']) => {
+const getVariantStyle = (
+  variant: TextProps['variant'],
+  { getSizeInPx, fontSizes }: DefaultTheme,
+) => {
   let style: { fontSize: Property.FontSize; fontWeight: Property.FontWeight } = {
     fontWeight: 'normal',
-    fontSize: getFontSizeInPx(16),
+    fontSize: getSizeInPx(fontSizes.Size16),
   };
 
   switch (variant) {
     case 'heading':
       style = {
         fontWeight: 'bold',
-        fontSize: getFontSizeInPx(24),
+        fontSize: getSizeInPx(fontSizes.Size24),
       };
       break;
 
     case 'sub-heading':
       style = {
         fontWeight: 'bold',
-        fontSize: getFontSizeInPx(20),
+        fontSize: getSizeInPx(fontSizes.Size20),
       };
       break;
 
@@ -67,11 +68,12 @@ const getVariantStyle = (variant: TextProps['variant']) => {
   return style;
 };
 
-const Text = styled(NonStyledText)(({ $color, $fontWeight, variant }) => {
+const Text = styled(NonStyledText)(({ $color, $fontWeight, $opacity, variant, theme }) => {
   return {
-    ...getVariantStyle(variant),
+    ...getVariantStyle(variant, theme),
     color: $color,
     fontWeight: $fontWeight,
+    opacity: $opacity,
   };
 }) as FC<TextProps>;
 

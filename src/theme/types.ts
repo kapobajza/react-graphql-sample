@@ -24,3 +24,7 @@ export type ApplyColorTransparencyFn = (color: string, transparency?: number) =>
 export interface Size {
   navigationBarHeight: string;
 }
+
+export type FontSize = 'Size16' | 'Size20' | 'Size24';
+
+export type FontSizesMap = Record<FontSize, number>;
