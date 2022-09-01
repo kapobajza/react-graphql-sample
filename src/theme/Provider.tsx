@@ -60,5 +60,5 @@ export const useTheme = (): IThemeContext => {
     throw new Error('Must be inside ThemeProvider');
   }
 
-  return { theme, setTheme };
+  return { ...theme, setTheme };
 };

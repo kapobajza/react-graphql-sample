@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import { PostService } from './Post.service';
 import { ThemeService } from './Theme.service';
+import { TranslationService } from './Translation.service';
 import { Services, ServicesProviderProps } from './types';
 
 export const ServicesContext = createContext<Services | undefined>(undefined);
@@ -27,4 +28,5 @@ export const useService = () => {
 export const getServices = (): Services => ({
   themeService: container.resolve(ThemeService),
   postService: container.resolve(PostService),
+  translationService: container.resolve(TranslationService),
 });

@@ -1,9 +1,11 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { Router } from './navigation';
+import { Language } from './services';
 import { ServicesProvider, getServices } from './services/Provider';
 import { defaultTheme } from './theme/default';
 import { ThemeProvider } from './theme/Provider';
+import { TranslationProvider } from './translation';
 
 const services = getServices();
 
@@ -13,9 +15,11 @@ const App = () => {
   return (
     <ServicesProvider services={services}>
       <QueryClientProvider client={client}>
-        <ThemeProvider theme={defaultTheme}>
-          <Router />
-        </ThemeProvider>
+        <TranslationProvider language={Language.En}>
+          <ThemeProvider theme={defaultTheme}>
+            <Router />
+          </ThemeProvider>
+        </TranslationProvider>
       </QueryClientProvider>
     </ServicesProvider>
   );

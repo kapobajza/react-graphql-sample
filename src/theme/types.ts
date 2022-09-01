@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { DefaultTheme } from 'styled-components';
 
-export interface IThemeContext {
-  theme: DefaultTheme;
+export interface IThemeContext extends DefaultTheme {
   setTheme: Dispatch<SetStateAction<DefaultTheme>>;
 }
 

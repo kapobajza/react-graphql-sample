@@ -1,11 +1,16 @@
 import { AxiosRequestConfig } from 'axios';
+import { LocalizedStrings as LocalizedStringsType } from 'react-localization';
+
+import en from '../languages/en.json';
 
 import { IPostService } from './Post.service';
 import { IThemeService } from './Theme.service';
+import { ITranslationService } from './Translation.service';
 
 export interface Services {
   themeService: IThemeService;
   postService: IPostService;
+  translationService: ITranslationService;
 }
 
 export interface ServicesProviderProps {
@@ -27,3 +32,9 @@ export interface MutationRequestParams<RequestBody = any> {
 }
 
 export type RequestParams<RequestBody = any> = string | MutationRequestParams<RequestBody>;
+
+export type Strings = LocalizedStringsType<typeof en>;
+
+export enum Language {
+  En = 'en',
+}

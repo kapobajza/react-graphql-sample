@@ -6,5 +6,5 @@ export const defaultTheme: DefaultTheme = {
   name: 'light',
   colors: lightColors,
   applyColorTransparency,
-  spacing: (val) => val * 8,
+  spacing: (val) => `${val * 8}px`,
 };

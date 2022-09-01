@@ -7,6 +7,6 @@ declare module 'styled-components' {
     name: ThemeName;
     colors: ColorsMap;
     applyColorTransparency: ApplyColorTransparencyFn;
-    spacing: (value: number) => number;
+    spacing: (value: number) => string;
   }
 }

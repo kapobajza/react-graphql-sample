@@ -9,11 +9,7 @@ export interface IThemeService {
 
 @injectable()
 export class ThemeService implements IThemeService {
-  private _current: DefaultTheme;
-
-  constructor() {
-    this._current = defaultTheme;
-  }
+  private _current: DefaultTheme = defaultTheme;
 
   public get current(): DefaultTheme {
     return this._current;
