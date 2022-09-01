@@ -34,7 +34,7 @@ function capitalizeFirstLetter(str) {
       createdAt: faker.date
         .between('2015-01-01T00:00:00.000Z', new Date().toISOString())
         .toISOString(),
-      user_id: randomUser.id,
+      userId: randomUser.id,
     });
   }
 
