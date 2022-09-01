@@ -2,6 +2,8 @@ import { createElement, forwardRef, PropsWithChildren, FC } from 'react';
 import styled from 'styled-components';
 import { Property } from 'csstype';
 
+import { getFontSizeInPx } from '../../util';
+
 import { TextProps } from './types';
 
 const getElementFromVariant = (variant: TextProps['variant']) => {
@@ -36,8 +38,6 @@ const NonStyledText = forwardRef<HTMLElement, PropsWithChildren<TextProps>>(
     });
   },
 );
-
-const getFontSizeInPx = (size: number) => `${size}px`;
 
 const getVariantStyle = (variant: TextProps['variant']) => {
   let style: { fontSize: Property.FontSize; fontWeight: Property.FontWeight } = {

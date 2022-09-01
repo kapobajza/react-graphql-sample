@@ -1,13 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { PostRoutePath } from '../modules/post/navigation/postRoutePath';
+import { NavigationBar, RoutePath } from '../components/NavigationBar';
 import PostsPage from '../modules/post/pages/PostsPage';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={PostRoutePath.Posts} element={<PostsPage />} />
+        <Route element={<NavigationBar />}>
+          <Route path={RoutePath.Posts} element={<PostsPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

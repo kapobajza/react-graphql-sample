@@ -1,6 +1,6 @@
 import 'styled-components';
 
-import { ThemeName, ColorsMap, ApplyColorTransparencyFn } from './types';
+import { ThemeName, ColorsMap, ApplyColorTransparencyFn, Size } from './types';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -8,5 +8,6 @@ declare module 'styled-components' {
     colors: ColorsMap;
     applyColorTransparency: ApplyColorTransparencyFn;
     spacing: (value: number) => string;
+    sizes: Size;
   }
 }

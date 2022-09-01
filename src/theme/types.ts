@@ -20,3 +20,7 @@ export type Color =
 export type ColorsMap = Record<Color, string>;
 
 export type ApplyColorTransparencyFn = (color: string, transparency?: number) => string;
+
+export interface Size {
+  navigationBarHeight: string;
+}
