@@ -67,7 +67,8 @@
   "description": "",
   "scripts": {
     "start": "webpack serve --open --hot",
-    "start:dev": "yarn start --mode dev",
+    "start:dev": "yarn start --env ENVIRONMENT=dev",
+    "start:prod": "yarn start --env ENVIRONMENT=prod",
     "build": "webpack --mode production",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "server": "cd server && npx json-server db.json && cd ..",

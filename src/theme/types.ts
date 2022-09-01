@@ -25,6 +25,6 @@ export interface Size {
   navigationBarHeight: string;
 }
 
-export type FontSize = 'Size16' | 'Size20' | 'Size24';
+export type FontSize = 'Size16' | 'Size20' | 'Size24' | 'Size18';
 
 export type FontSizesMap = Record<FontSize, number>;

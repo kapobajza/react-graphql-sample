@@ -1,10 +1,14 @@
 import { FC } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
+import HomeRoutePath from '../../modules/home/navigation/RoutePath';
+import PostRoutePath from '../../modules/post/navigation/RoutePath';
 import { useTheme } from '../../theme/Provider';
 import { useTranslation } from '../../translation';
 import { Box } from '../Box';
+
+import NavigationBarLink from './NavigationBarLink';
 
 interface Props {}
 
@@ -17,7 +21,8 @@ const NavigationBar: FC<Props> = () => {
       <Box height={sizes.navigationBarHeight} />
       <Root>
         <div>
-          <StyledLink to="/">{strings.postsHeader}</StyledLink>
+          <StyledLink path={HomeRoutePath.Home}>{strings.homeHeader}</StyledLink>
+          <StyledLink path={PostRoutePath.Posts}>{strings.postsHeader}</StyledLink>
         </div>
       </Root>
       <Outlet />
@@ -41,13 +46,6 @@ const Root = styled.nav`
   background-color: ${({ theme }) => theme.colors['#FFF']};
 `;
 
-const StyledLink = styled(Link)(({ theme }) => ({
-  textDecoration: 'none',
-  color: theme.colors['#0072B1'],
-  fontSize: theme.getSizeInPx(theme.fontSizes.Size24),
-  fontWeight: 'bold',
-
-  ':visited': {
-    color: theme.colors['#000'],
-  },
+const StyledLink = styled(NavigationBarLink)(({ theme }) => ({
+  marginRight: theme.spacing(1),
 }));

@@ -11,10 +11,12 @@ module.exports = (env) => {
     output: {
       path: path.join(__dirname, 'build'),
       filename: 'index.bundle.js',
+      publicPath: '/',
     },
     devServer: {
       open: true,
       host: 'localhost',
+      historyApiFallback: true,
     },
     plugins: [
       new HtmlWebpackPlugin({

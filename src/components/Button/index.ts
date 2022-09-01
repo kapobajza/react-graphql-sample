@@ -1,3 +1,4 @@
 import Clickable from './Clickable';
+import Link from './Link';
 
-export { Clickable };
+export { Clickable, Link };

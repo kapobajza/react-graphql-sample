@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import useGetPosts from '../hooks/useGetPosts';
 import { Text } from '../../../components/Text';
@@ -10,14 +11,18 @@ import { useTheme } from '../../../theme/Provider';
 import { Avatar } from '../../../components/Image';
 import { Box } from '../../../components/Box';
 import { useTranslation } from '../../../translation';
+import PostRoutePath from '../navigation/RoutePath';
 
 const PostsPage = () => {
   const { data = [], isLoading } = useGetPosts();
   const { strings } = useTranslation();
   const { colors, applyColorTransparency, spacing } = useTheme();
+  const navigate = useNavigate();
 
   const renderItem = (item: Post) => {
-    const onItemClick = () => {};
+    const onItemClick = () => {
+      navigate(PostRoutePath.getPostDetails(item.id));
+    };
 
     return (
       <ItemContainer onClick={onItemClick}>

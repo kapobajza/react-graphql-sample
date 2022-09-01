@@ -1,4 +1,7 @@
 {
   "postsHeader": "Posts",
-  "authoredBy": "Author: {0}"
+  "homeHeader": "Home",
+  "authoredBy": "Author: {0}",
+  "welcome": "Welcome to the React Sample App!",
+  "goToPosts": "Go to Posts"
 }
