@@ -16,10 +16,11 @@ const { strings } = container.resolve(TranslationService);
 
 describe('PostsPage', () => {
   test('renders all posts', async () => {
-    renderWithRouter(<PostsPage />, {
+    renderWithRouter({
       services: {
         postService: mockedPostService,
       },
+      UI: <PostsPage />,
     });
 
     for (let i = 0; i < posts.length; i++) {
@@ -41,37 +42,48 @@ describe('PostsPage', () => {
   });
 
   test('renders error message on posts page', async () => {
-    const errorMessage = 'Custom error message';
-    renderWithRouter(<PostsPage />, {
+    const ERROR_MESSAGE = 'Custom error message';
+
+    renderWithRouter({
       services: {
         postService: {
           ...mockedPostService,
           getAll() {
-            throw new Error(errorMessage);
+            throw new Error(ERROR_MESSAGE);
           },
         },
       },
+      UI: <PostsPage />,
     });
 
     const errorTitle = await screen.findByText(strings.errorsTitle);
-    const errorDescription = await screen.findByText(errorMessage);
+    const errorMessage = await screen.findByText(ERROR_MESSAGE);
 
     expect(errorTitle).toBeInTheDocument();
-    expect(errorDescription).toBeInTheDocument();
+    expect(errorMessage).toBeInTheDocument();
   });
 
   test('goes to post details page on click', async () => {
-    const { user, history } = renderWithRouter(<PostsPage />, {
+    const { user } = renderWithRouter({
       services: {
         postService: mockedPostService,
       },
       routes: postRoutes,
+      initialRoute: PostRoutePath.Posts,
     });
 
     const post = posts[0];
     const title = await screen.findByText(post.title);
     await user.click(title);
 
-    expect(history.location.pathname).toBe(PostRoutePath.getPostDetails(post.id));
+    const postDetailsTitle = await screen.findByText(post.title);
+    const body = await screen.findByText(post.body);
+    const userElement = await screen.findByText(
+      strings.formatString(strings.authoredBy, post.user.name) as string,
+    );
+
+    expect(postDetailsTitle).toBeInTheDocument();
+    expect(body).toBeInTheDocument();
+    expect(userElement).toBeInTheDocument();
   });
 });

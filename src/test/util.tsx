@@ -1,8 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Route, Router } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
 
 import { getServices, Language, Services, ServicesProvider } from '../services';
 import { TranslationProvider } from '../translation';
@@ -24,15 +23,12 @@ interface RenderWithRouterOptions {
   services: Partial<Services>;
   routes: RouteProp[];
   initialRoute: string;
+  UI: React.ReactElement;
 }
 
-export const renderWithRouter = (
-  UI: React.ReactElement,
-  params?: Partial<RenderWithRouterOptions>,
-) => {
-  const { services, routes = [], initialRoute = '/' } = params || {};
+export const renderWithRouter = (params?: Partial<RenderWithRouterOptions>) => {
+  const { services, routes = [], initialRoute = '/', UI } = params || {};
   const testQueryClient = createTestQueryClient();
-  const history = createMemoryHistory();
 
   const renderedProps = render(
     <ServicesProvider
@@ -43,11 +39,11 @@ export const renderWithRouter = (
       <QueryClientProvider client={testQueryClient}>
         <TranslationProvider language={Language.En}>
           <ThemeProvider theme={defaultTheme}>
-            <Router location={history.location} navigator={history}>
+            <MemoryRouter initialEntries={[initialRoute]}>
               <Routes routes={routes}>
-                <Route path={initialRoute} element={UI} />
+                {UI ? <Route path={initialRoute} element={UI} /> : null}
               </Routes>
-            </Router>
+            </MemoryRouter>
           </ThemeProvider>
         </TranslationProvider>
       </QueryClientProvider>
@@ -57,6 +53,5 @@ export const renderWithRouter = (
   return {
     ...renderedProps,
     user: userEvent.setup(),
-    history,
   };
 };
