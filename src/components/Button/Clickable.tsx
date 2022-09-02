@@ -29,5 +29,3 @@ export default Clickable;
 const StyledContainer = styled.div<{ $disabled?: boolean }>`
   cursor: ${({ $disabled }) => !$disabled && 'pointer'};
 `;
-
-// export const Clickable =

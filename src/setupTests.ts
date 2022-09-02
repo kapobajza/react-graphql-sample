@@ -4,3 +4,10 @@
 // learn more: https://github.com/testing-library/jest-dom
 import 'reflect-metadata';
 import '@testing-library/jest-dom';
+import { setLogger } from 'react-query';
+
+setLogger({
+  log: console.log,
+  warn: console.warn,
+  error: () => {},
+});

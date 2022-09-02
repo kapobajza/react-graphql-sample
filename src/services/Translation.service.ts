@@ -15,11 +15,7 @@ export interface ITranslationService {
 
 @injectable()
 export class TranslationService implements ITranslationService {
-  private _strings: Strings;
-
-  constructor() {
-    this._strings = new LocalizedStrings(languages);
-  }
+  private _strings: Strings = new LocalizedStrings(languages);
 
   public get strings(): Strings {
     return this._strings;

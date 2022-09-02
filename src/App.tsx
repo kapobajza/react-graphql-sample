@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
 
-import { Router } from './navigation';
+import { defaultRoutes, Routes } from './navigation';
 import { Language } from './services';
 import { ServicesProvider, getServices } from './services/Provider';
 import { defaultTheme } from './theme/default';
@@ -23,7 +24,9 @@ const App = () => {
       <QueryClientProvider client={client}>
         <TranslationProvider language={Language.En}>
           <ThemeProvider theme={defaultTheme}>
-            <Router />
+            <BrowserRouter>
+              <Routes routes={defaultRoutes} />
+            </BrowserRouter>
           </ThemeProvider>
         </TranslationProvider>
       </QueryClientProvider>

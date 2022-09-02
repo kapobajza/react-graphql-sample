@@ -1,4 +1,4 @@
-import React, { useState, type PropsWithChildren } from 'react';
+import React, { useMemo, useState, type PropsWithChildren } from 'react';
 
 import { useService } from '../services/Provider';
 import { Strings } from '../services/types';
@@ -18,14 +18,17 @@ export const TranslationProvider: React.FC<PropsWithChildren<{ language: string 
   const { translationService } = useService();
   const [currentLanguage, setCurrentLanguage] = useState<string>(language);
 
-  const contextValue: ITranslationContext = {
-    strings: translationService.strings,
-    setLanguage: (ln: string) => {
-      translationService.strings.setLanguage(ln);
-      setCurrentLanguage(ln);
-    },
-    language: currentLanguage,
-  };
+  const contextValue = useMemo<ITranslationContext>(
+    () => ({
+      strings: translationService.strings,
+      setLanguage: (ln: string) => {
+        translationService.strings.setLanguage(ln);
+        setCurrentLanguage(ln);
+      },
+      language: currentLanguage,
+    }),
+    [currentLanguage, translationService.strings],
+  );
 
   return <TranslationContext.Provider value={contextValue}>{children}</TranslationContext.Provider>;
 };
