@@ -14,7 +14,7 @@ import { useTranslation } from '../../../translation';
 import PostRoutePath from '../navigation/RoutePath';
 
 const PostsPage = () => {
-  const { data = [], isLoading } = useGetPosts();
+  const { data = [], isLoading, error, isError } = useGetPosts();
   const { strings } = useTranslation();
   const { colors, applyColorTransparency, spacing } = useTheme();
   const navigate = useNavigate();
@@ -44,7 +44,13 @@ const PostsPage = () => {
 
   return (
     <Container>
-      <List data={data} renderItem={renderItem} isLoading={isLoading} />
+      <List
+        data={data}
+        renderItem={renderItem}
+        isLoading={isLoading}
+        error={error}
+        isError={isError}
+      />
     </Container>
   );
 };

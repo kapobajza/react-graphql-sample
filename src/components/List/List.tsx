@@ -1,5 +1,6 @@
 import { ReactElement, cloneElement, useCallback } from 'react';
 
+import { ErrorContainer } from '../Container';
 import { Loader } from '../Loading';
 
 interface ListProps<TItem> {
@@ -8,6 +9,8 @@ interface ListProps<TItem> {
   listKey?: ((item: TItem) => string) | string;
   renderListHeader?: () => ReactElement | null | undefined;
   isLoading?: boolean;
+  isError?: boolean;
+  error?: Error | null;
 }
 
 const List = <TItem extends { id?: string; [key: string]: any }>({
@@ -16,6 +19,8 @@ const List = <TItem extends { id?: string; [key: string]: any }>({
   listKey,
   renderListHeader,
   isLoading,
+  isError,
+  error,
 }: ListProps<TItem>): JSX.Element => {
   const mapFn = useCallback(
     (item: TItem) => {
@@ -37,6 +42,10 @@ const List = <TItem extends { id?: string; [key: string]: any }>({
 
   if (isLoading) {
     return <Loader $center />;
+  }
+
+  if (isError && error) {
+    return <ErrorContainer message={error.message} />;
   }
 
   return (

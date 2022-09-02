@@ -24,4 +24,5 @@ const StyledLink = styled(Link)<{ $isActive: boolean }>(({ theme, $isActive }) =
     ? theme.colors['#0072B1']
     : theme.applyColorTransparency(theme.colors['#0072B1'], 0.6),
   fontSize: theme.getSizeInPx(theme.fontSizes.Size24),
+  textDecoration: $isActive ? 'underline' : undefined,
 }));

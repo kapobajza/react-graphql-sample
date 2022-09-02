@@ -9,7 +9,13 @@ import { TranslationProvider } from './translation';
 
 const services = getServices();
 
-const client = new QueryClient();
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+    },
+  },
+});
 
 const App = () => {
   return (

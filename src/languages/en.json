@@ -2,6 +2,8 @@
   "postsHeader": "Posts",
   "homeHeader": "Home",
   "authoredBy": "Author: {0}",
-  "welcome": "Welcome to the React Sample App!",
-  "goToPosts": "Go to Posts"
+  "welcome": "Welcome to React Sample App!",
+  "goToPosts": "Go to Posts",
+  "errorsTitle": "Error",
+  "errorsGeneral": "An error occurred"
 }

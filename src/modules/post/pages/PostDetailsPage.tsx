@@ -13,7 +13,7 @@ const PostDetailsPage = () => {
   const { strings } = useTranslation();
   const { colors, spacing, fontSizes, applyColorTransparency } = useTheme();
   const { id = '' } = useParams<{ id: string }>();
-  const { data, isLoading } = useGetPostDetails(id);
+  const { data, isLoading, error, isError } = useGetPostDetails(id);
   const {
     title,
     body,
@@ -21,7 +21,7 @@ const PostDetailsPage = () => {
   } = data || {};
 
   return (
-    <Container isLoading={isLoading}>
+    <Container isLoading={isLoading} error={error} isError={isError}>
       <InnerContainer>
         <Box marginBottom={spacing(3)} marginTop={spacing(6)}>
           <Text variant="heading">{title}</Text>
