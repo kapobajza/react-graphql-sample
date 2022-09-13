@@ -1,9 +1,9 @@
 # React Sample App
 
-This is a sample React app, using a fake API server ([json-server](https://github.com/typicode/json-server)). 
+This is a sample React app, using a fake API server ([json-server](https://github.com/typicode/json-server)).
 It is a small app where you can browse through a list of posts, see details of each individual post and add new posts.
 
-In order to start the app, you would have first to install dependencies:
+Before starting the app, you would have first to install dependencies:
 
 ```
 yarn install
@@ -17,10 +17,10 @@ The `.dev.env` file only needs the `BASE_API_URL` key. If you don't change the p
 BASE_API_URL=http://localhost:3000/
 ```
 
-Now you would need to start your fake API server, which you can do with the following command:
+To start the server and the app simultaneously run the following command:
 
 ```
-yarn server
+yarn start
 ```
 
 And that's it. Enjoy! :D
