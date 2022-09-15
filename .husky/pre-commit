@@ -4,7 +4,7 @@
 echo "\nRunning eslint...\n"
 yarn lint
 echo "\nRunning prettier...\n"
-npx prettier --write "**/*.{js,jsx,ts,tsx}"
+yarn prettify
 echo "\nRunning typescript compiler...\n"
 npx tsc
 echo "\nRunning tests...\n"

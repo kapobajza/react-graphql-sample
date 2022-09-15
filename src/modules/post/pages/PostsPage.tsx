@@ -14,7 +14,7 @@ import { useTranslation } from '../../../translation';
 import PostRoutePath from '../navigation/RoutePath';
 
 const PostsPage = () => {
-  const { data = [], isLoading, error, isError } = useGetPosts();
+  const { data = [], isLoading, error, isError, onEndReached, isFetchingNextPage } = useGetPosts();
   const { strings } = useTranslation();
   const { colors, applyColorTransparency, spacing } = useTheme();
   const navigate = useNavigate();
@@ -50,6 +50,9 @@ const PostsPage = () => {
         isLoading={isLoading}
         error={error}
         isError={isError}
+        onEndReached={onEndReached}
+        isLoadingMore={isFetchingNextPage}
+        scrollThreshold={0.9}
       />
     </Container>
   );

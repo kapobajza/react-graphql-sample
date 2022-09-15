@@ -13,6 +13,7 @@
     "react-router-dom": "^6.3.0",
     "reflect-metadata": "^0.1.13",
     "styled-components": "^5.3.5",
+    "throttle-debounce": "^5.0.0",
     "tsyringe": "^4.7.0",
     "typescript": "^4.8.2",
     "web-vitals": "^2.1.4"
@@ -31,6 +32,7 @@
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",
+    "@types/throttle-debounce": "^5.0.0",
     "@webpack-cli/generators": "^2.5.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^29.0.1",
@@ -73,10 +75,11 @@
     "start:prod": "yarn app --env ENVIRONMENT=prod",
     "build": "webpack --mode production",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "server": "cd server && npx json-server db.json && cd ..",
+    "server": "cd server && npx json-server db.json --middlewares ./delay.js && cd ..",
     "test": "jest",
     "test:watch": "yarn test --watchAll",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettify": "prettier --write \"**/*.{js,jsx,ts,tsx}\""
   },
   "resolutions": {
     "styled-components": "^5"

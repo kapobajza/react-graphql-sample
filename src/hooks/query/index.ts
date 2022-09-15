@@ -1,3 +1,4 @@
 import useQuery from './useQuery';
+import useInfiniteQuery from './useInfiniteQuery';
 
-export { useQuery };
+export { useQuery, useInfiniteQuery };

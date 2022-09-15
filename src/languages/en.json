@@ -4,6 +4,7 @@
   "authoredBy": "Author: {0}",
   "welcome": "Welcome to React Sample App!",
   "goToPosts": "Go to Posts",
+  "loading": "Loading...",
   "errorsTitle": "Error",
   "errorsGeneral": "An error occurred"
 }
