@@ -4,6 +4,8 @@ import { applyColorTransparency, lightColors } from './colors';
 
 const getSizeInPx = (val: number) => `${val}px`;
 
+const modalZIndex = 9999;
+
 export const defaultTheme: DefaultTheme = {
   name: 'light',
   colors: lightColors,
@@ -18,5 +20,8 @@ export const defaultTheme: DefaultTheme = {
     Size20: 20,
     Size24: 24,
     Size18: 18,
+  },
+  zIndices: {
+    modal: modalZIndex,
   },
 };

@@ -24,6 +24,7 @@ const StyledLoader = styled.div<Props>`
       height: ${sizeInPx};
       animation: spin 2s linear infinite;
       margin: ${$center && '0 auto'};
+      margin-top: ${theme.spacing(2)};
 
       @keyframes spin {
         0% {

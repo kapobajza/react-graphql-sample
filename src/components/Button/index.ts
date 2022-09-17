@@ -1,4 +1,5 @@
 import Clickable from './Clickable';
 import Link from './Link';
+import Button from './Button';
 
-export { Clickable, Link };
+export { Clickable, Link, Button };

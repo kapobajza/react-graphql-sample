@@ -1,6 +1,13 @@
 import 'styled-components';
 
-import { ThemeName, ColorsMap, ApplyColorTransparencyFn, Size, FontSizesMap } from './types';
+import {
+  ThemeName,
+  ColorsMap,
+  ApplyColorTransparencyFn,
+  Size,
+  FontSizesMap,
+  ZIndicesMap,
+} from './types';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -11,5 +18,6 @@ declare module 'styled-components' {
     sizes: Size;
     getSizeInPx: (value: number) => string;
     fontSizes: FontSizesMap;
+    zIndices: ZIndicesMap;
   }
 }

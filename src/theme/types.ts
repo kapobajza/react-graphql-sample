@@ -28,3 +28,7 @@ export interface Size {
 export type FontSize = 'Size16' | 'Size20' | 'Size24' | 'Size18';
 
 export type FontSizesMap = Record<FontSize, number>;
+
+export type ZIndex = 'modal';
+
+export type ZIndicesMap = Record<ZIndex, number>;

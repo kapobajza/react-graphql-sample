@@ -1,6 +1,9 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 
+import { AlertModal } from './components/Alert';
+import { ModalProvider } from './components/Modal';
+import { ModalStack } from './components/Modal/types';
 import { defaultRoutes, Routes } from './navigation';
 import { Language } from './services';
 import { ServicesProvider, getServices } from './services/Provider';
@@ -18,15 +21,21 @@ const client = new QueryClient({
   },
 });
 
+const modalStack: ModalStack = {
+  Alert: AlertModal,
+};
+
 const App = () => {
   return (
     <ServicesProvider services={services}>
       <QueryClientProvider client={client}>
         <TranslationProvider language={Language.En}>
           <ThemeProvider theme={defaultTheme}>
-            <BrowserRouter>
-              <Routes routes={defaultRoutes} />
-            </BrowserRouter>
+            <ModalProvider stack={modalStack}>
+              <BrowserRouter>
+                <Routes routes={defaultRoutes} />
+              </BrowserRouter>
+            </ModalProvider>
           </ThemeProvider>
         </TranslationProvider>
       </QueryClientProvider>
