@@ -4,11 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@hookform/resolvers": "^2.9.8",
     "axios": "^0.27.2",
     "dotenv": "^16.0.2",
     "framer-motion": "^7.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.35.0",
     "react-localization": "^1.0.19",
     "react-query": "^3.39.2",
     "react-router-dom": "^6.3.0",
@@ -17,7 +19,8 @@
     "throttle-debounce": "^5.0.0",
     "tsyringe": "^4.7.0",
     "typescript": "^4.8.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
