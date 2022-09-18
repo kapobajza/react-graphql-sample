@@ -81,17 +81,35 @@ describe('Modal component', () => {
     const buttonOpenModal = screen.getByRole('button', { name: BUTTON_OPEN_MODAL });
     userEvent.click(buttonOpenModal);
 
-    const modalHeading = await screen.findByText(MODAL_ONE_HEADING);
     const buttonCloseModal = await screen.findByRole('button', { name: BUTTON_CLOSE_MODAL });
 
     userEvent.click(buttonCloseModal);
 
-    const buttonClose = await screen.findByRole('button', { name: BUTTON_OPEN_MODAL });
+    const modalHeading = await screen.findByText(MODAL_ONE_HEADING);
+    const buttonOpen = await screen.findByRole('button', { name: BUTTON_OPEN_MODAL });
 
     await waitForElementToBeRemoved(modalHeading);
 
     expect(modalHeading).not.toBeInTheDocument();
     expect(buttonCloseModal).not.toBeInTheDocument();
-    expect(buttonClose).toBeInTheDocument();
+    expect(buttonOpen).toBeInTheDocument();
+  });
+
+  test('open nested modal', async () => {
+    render(<App />);
+
+    const buttonOpenModal = screen.getByRole('button', { name: BUTTON_OPEN_MODAL });
+    userEvent.click(buttonOpenModal);
+
+    const buttonOpenAnotherModal = await screen.findByRole('button', {
+      name: BUTTON_OPEN_ANOTHER_MODAL,
+    });
+    userEvent.click(buttonOpenAnotherModal);
+
+    const modalHeading = await screen.findByText(MODAL_TWO_HEADING);
+    const modalParam = await screen.findByText(TEST_TWO_MODAL_PARAM);
+
+    expect(modalHeading).toBeInTheDocument();
+    expect(modalParam).toBeInTheDocument();
   });
 });
