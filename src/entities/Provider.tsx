@@ -25,5 +25,5 @@ export const useEntity = () => {
 };
 
 export const getEntities = (): EntitiesMap => ({
-  dateTime: container.resolve(DateTimeEntity),
+  dateTimeEntity: container.resolve(DateTimeEntity),
 });

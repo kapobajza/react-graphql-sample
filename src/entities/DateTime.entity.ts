@@ -8,6 +8,6 @@ export interface IDateTimeEntity {
 @injectable()
 export class DateTimeEntity implements IDateTimeEntity {
   getUTCDate(date?: string | undefined): string {
-    return DateTime.now().toUTC().toISO();
+    return (date ? DateTime.fromISO(date) : DateTime.now()).toUTC().toISO();
   }
 }

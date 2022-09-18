@@ -10,7 +10,7 @@ const getMockedUser = (): User => ({
   imageUrl: faker.image.people(),
 });
 
-const getMockedPost = (): Post => ({
+export const getMockedPost = (): Post => ({
   id: faker.datatype.uuid(),
   body: faker.helpers.unique(faker.lorem.words, [5]),
   title: faker.helpers.unique(faker.lorem.words),
@@ -43,6 +43,6 @@ export const getMockedPostService = (posts: Post[]): IPostService => ({
     });
   },
   async add() {
-    await new Promise((resolve) => {});
+    await new Promise((resolve) => resolve(getMockedPost()));
   },
 });

@@ -15,21 +15,30 @@ interface Props {
 const ModalItem: FC<PropsWithChildren<Props>> = ({ children, index, options, removeItem }) => {
   const { closeOnOutsideClick = true, animationType = 'slide-and-fade' } = options || {};
 
-  useMountEffect(() => {
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  });
-
-  const onInnerItemClick: MouseEventHandler<HTMLDivElement> = (e) => e.stopPropagation();
-
-  const onItemClick = () => {
+  const closeModal = () => {
     if (closeOnOutsideClick) {
       removeItem();
     }
   };
+
+  useMountEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    const onKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+
+    window.addEventListener('keydown', onKeyPress);
+
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', onKeyPress);
+    };
+  });
+
+  const onInnerItemClick: MouseEventHandler<HTMLDivElement> = (e) => e.stopPropagation();
 
   const containerAnimationProps: AnimationProps = {
     initial: { opacity: 0 },
@@ -49,7 +58,7 @@ const ModalItem: FC<PropsWithChildren<Props>> = ({ children, index, options, rem
       : {};
 
   return (
-    <Container $index={index} onClick={onItemClick} {...containerAnimationProps}>
+    <Container $index={index} onClick={closeModal} {...containerAnimationProps}>
       <InnerContainer onClick={onInnerItemClick} {...innerContainerAnimationProps}>
         {children}
       </InnerContainer>

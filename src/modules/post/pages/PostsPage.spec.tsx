@@ -1,12 +1,14 @@
 import { fireEvent, screen } from '@testing-library/react';
 
 import { container } from '../../../di';
-import { getMockedPosts, getMockedPostService } from '../../../services';
+import { getMockedPost, getMockedPosts, getMockedPostService } from '../../../services';
 import { TranslationService } from '../../../services/Translation.service';
 import { renderWithRouter } from '../../../test';
 import { Post } from '../../../types/models';
+import { validationMessages } from '../../../util';
 import PostRoutePath from '../navigation/RoutePath';
 import postRoutes from '../navigation/routes';
+import { AddPostField } from '../validation/fields';
 
 import PostsPage from './PostsPage';
 
@@ -120,5 +122,64 @@ describe('PostsPage', () => {
     fireEvent.scroll(window, { target: { scrollY: 20 * 150 } });
 
     await assertPostsOnPage(postsPage2.slice(2));
+  });
+
+  test('add new post validation errors', async () => {
+    const { user } = renderWithRouter({
+      services: {
+        postService: mockedPostService,
+      },
+      UI: <PostsPage />,
+    });
+
+    const addPostButton = screen.getByRole('button', { name: strings.addPostNew });
+    await user.click(addPostButton);
+
+    const saveButton = await screen.findByRole('button', { name: strings.save });
+    await user.click(saveButton);
+
+    const titleError = await screen.findByText(validationMessages.required(strings.addPostTitle));
+    const bodyError = await screen.findByText(validationMessages.required(strings.addPostBody));
+
+    expect(titleError).toBeInTheDocument();
+    expect(bodyError).toBeInTheDocument();
+  });
+
+  test('add new post', async () => {
+    const newPosts = getMockedPosts(5);
+    const addedPost = getMockedPost();
+
+    const { user } = renderWithRouter({
+      services: {
+        postService: {
+          ...mockedPostService,
+          getAll() {
+            return new Promise((resolve) => resolve(newPosts));
+          },
+          async add() {
+            newPosts.push(addedPost);
+          },
+        },
+      },
+      UI: <PostsPage />,
+    });
+
+    const addPostButton = screen.getByRole('button', { name: strings.addPostNew });
+
+    await user.click(addPostButton);
+
+    const titleInput = await screen.findByTestId(AddPostField.Title);
+    const bodyInput = await screen.findByTestId(AddPostField.Body);
+    const saveButton = await screen.findByRole('button', { name: strings.save });
+
+    await user.type(titleInput, addedPost.title);
+    await user.type(bodyInput, addedPost.body);
+    await user.click(saveButton);
+
+    const addedTitle = await screen.findByText(addedPost.title);
+    const addedBody = await screen.findByText(addedPost.body);
+
+    expect(addedTitle).toBeInTheDocument();
+    expect(addedBody).toBeInTheDocument();
   });
 });

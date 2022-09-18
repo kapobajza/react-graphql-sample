@@ -53,6 +53,10 @@ const StyledButton = styled.button<{ $variant: Props['variant'] }>`
     opacity: 0.5;
   }
 
+  :focus-visible {
+    outline: none;
+  }
+
   min-width: 60px;
   border: none;
   border-radius: 32px;

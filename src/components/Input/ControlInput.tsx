@@ -64,6 +64,7 @@ const ControlInput = <TFieldValues extends FieldValues>(
         ref={inputRef}
         as={asProp}
         $multiline={multiline}
+        data-testid={name}
       />
     );
   };
