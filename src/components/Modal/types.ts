@@ -33,8 +33,8 @@ export interface ModalComponentProps<
 
 export type ModalComponent = ComponentType<ModalComponentProps>;
 
-export type ModalStack = {
-  [key in keyof ModalStackParams]: ModalComponent;
+export type ModalStack<TParams = ModalStackParams> = {
+  [key in keyof TParams]: ModalComponent;
 };
 
 export type AnimationType = 'slide-and-fade' | 'fade';
@@ -44,11 +44,11 @@ export interface ModalOptions {
   animationType?: AnimationType;
 }
 
-export interface IModalContext {
-  openModal: <TName extends keyof ModalStackParams = any>(
+export interface IModalContext<TParams = ModalStackParams> {
+  openModal: <TName extends keyof TParams = any>(
     name: TName,
-    params?: ModalStackParams[TName],
+    params?: TParams[TName],
     options?: ModalOptions,
   ) => void;
-  closeModal: (name?: keyof ModalStackParams) => void;
+  closeModal: (name?: keyof TParams) => void;
 }

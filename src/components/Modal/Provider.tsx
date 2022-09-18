@@ -1,7 +1,7 @@
 import { createContext, FC, PropsWithChildren, useContext, useState } from 'react';
 
 import ModalBackground from './ModalBackground';
-import { IModalContext, ModalStack } from './types';
+import { IModalContext, ModalStack, ModalStackParams } from './types';
 
 const ModalContext = createContext<IModalContext | undefined>(undefined);
 
@@ -23,12 +23,12 @@ export const ModalProvider: FC<PropsWithChildren<Props>> = ({ children, stack })
   );
 };
 
-export const useModal = () => {
-  const context = useContext(ModalContext);
+export function useModal<TParams = ModalStackParams>() {
+  const context = useContext(ModalContext) as IModalContext<TParams> | undefined;
 
   if (!context) {
     throw new Error('Must be inside of ModalProvider');
   }
 
   return context;
-};
+}
