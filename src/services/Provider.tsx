@@ -1,4 +1,4 @@
-import React, { FC, useContext, PropsWithChildren, createContext } from 'react';
+import { FC, useContext, PropsWithChildren, createContext } from 'react';
 import { container } from 'tsyringe';
 
 import { PostService } from './Post.service';
@@ -25,8 +25,10 @@ export const useService = () => {
   return context;
 };
 
-export const getServices = (): Services => ({
-  themeService: container.resolve(ThemeService),
-  postService: container.resolve(PostService),
-  translationService: container.resolve(TranslationService),
-});
+export const getServices = (): Services => {
+  return {
+    themeService: container.resolve(ThemeService),
+    postService: container.resolve(PostService),
+    translationService: container.resolve(TranslationService),
+  };
+};

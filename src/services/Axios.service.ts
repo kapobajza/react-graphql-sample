@@ -92,7 +92,7 @@ export abstract class AxiosService {
   }
 
   protected async postRequest<RequestBody = any>(
-    paramsOrRoute?: RequestParams | string,
+    paramsOrRoute?: RequestParams<RequestBody> | string,
     params?: MutationRequestParams,
   ) {
     const { route = '', options, body } = this.getRequestParams(paramsOrRoute, params);

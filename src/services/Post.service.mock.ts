@@ -42,4 +42,7 @@ export const getMockedPostService = (posts: Post[]): IPostService => ({
       }
     });
   },
+  async add() {
+    await new Promise((resolve) => {});
+  },
 });

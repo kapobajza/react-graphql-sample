@@ -68,13 +68,16 @@ const getVariantStyle = (
   return style;
 };
 
-const Text = styled(NonStyledText)(({ $color, $fontWeight, $opacity, variant, theme }) => {
-  return {
-    ...getVariantStyle(variant, theme),
-    color: $color,
-    fontWeight: $fontWeight,
-    opacity: $opacity,
-  };
-}) as FC<TextProps>;
+const Text = styled(NonStyledText)(
+  ({ $color, $fontWeight, $opacity, $textAlign, variant, theme }) => {
+    return {
+      ...getVariantStyle(variant, theme),
+      color: $color,
+      fontWeight: $fontWeight,
+      opacity: $opacity,
+      textAlign: $textAlign,
+    };
+  },
+) as FC<TextProps>;
 
 export default Text;

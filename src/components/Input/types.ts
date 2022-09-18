@@ -10,4 +10,5 @@ export interface InputProps<TFieldValues extends FieldValues> {
   label: string;
   defaultValue?: any;
   required?: boolean;
+  multiline?: boolean;
 }

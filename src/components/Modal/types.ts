@@ -21,6 +21,7 @@ export interface AlertOptions {
 
 export interface ModalStackParams {
   Alert: AlertOptions;
+  AddPost: undefined;
 }
 
 export interface ModalComponentProps<

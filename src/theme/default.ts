@@ -20,6 +20,8 @@ export const defaultTheme: DefaultTheme = {
     Size20: 20,
     Size24: 24,
     Size18: 18,
+    Size12: 12,
+    Size14: 14,
   },
   zIndices: {
     modal: modalZIndex,

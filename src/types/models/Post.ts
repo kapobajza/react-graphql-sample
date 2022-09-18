@@ -7,3 +7,5 @@ export interface Post {
   createdAt: string;
   user: User;
 }
+
+export type AddPostRequestParams = Pick<Post, 'body' | 'title'>;

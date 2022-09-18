@@ -1,5 +1,8 @@
 import { createContext, FC, PropsWithChildren, useContext, useState } from 'react';
 
+import AddPostModal from '../../modules/post/components/Modal/AddPostModal';
+import AlertModal from '../Alert/AlertModal';
+
 import ModalBackground from './ModalBackground';
 import { IModalContext, ModalStack, ModalStackParams } from './types';
 
@@ -32,3 +35,8 @@ export function useModal<TParams = ModalStackParams>() {
 
   return context;
 }
+
+export const getModalStack = (): ModalStack => ({
+  Alert: AlertModal,
+  AddPost: AddPostModal,
+});

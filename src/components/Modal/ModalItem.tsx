@@ -2,6 +2,8 @@ import { AnimationProps, motion } from 'framer-motion';
 import { FC, MouseEventHandler, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
+import { useMountEffect } from '../../hooks';
+
 import { ModalOptions } from './types';
 
 interface Props {
@@ -11,7 +13,16 @@ interface Props {
 }
 
 const ModalItem: FC<PropsWithChildren<Props>> = ({ children, index, options, removeItem }) => {
-  const { closeOnOutsideClick, animationType = 'slide-and-fade' } = options || {};
+  const { closeOnOutsideClick = true, animationType = 'slide-and-fade' } = options || {};
+
+  useMountEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  });
+
   const onInnerItemClick: MouseEventHandler<HTMLDivElement> = (e) => e.stopPropagation();
 
   const onItemClick = () => {

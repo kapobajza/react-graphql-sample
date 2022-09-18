@@ -7,8 +7,13 @@
   "no": "No",
   "ok": "Ok",
   "cancel": "Cancel",
+  "save": "Save",
   "goToPosts": "Go to Posts",
   "loading": "Loading...",
   "errorsTitle": "Error",
-  "errorsGeneral": "An error occurred"
+  "errorsGeneral": "An error occurred",
+  "addPostTitle": "Title",
+  "addPostBody": "Body",
+  "addPostNew": "Add new post",
+  "validationMessagesRequired": "{0} is required"
 }

@@ -3,6 +3,7 @@ import {
   UseInfiniteQueryOptions as RQUseInfiniteQueryOptions,
   QueryKey,
   InfiniteData,
+  UseMutationOptions,
 } from 'react-query';
 
 export interface UseInfiniteQueryResult<TData = unknown, TError = Error>
@@ -35,3 +36,9 @@ export type QueryFnOptions = {
   page: number;
   limit: number;
 };
+
+export interface ExtendedMutationOptions<TData, TError, TVariables, TContext, TUpdateData>
+  extends Omit<UseMutationOptions<TData, TError, TVariables, TContext>, 'mutationFn'> {
+  queryKey?: QueryKey | ((data: TVariables) => QueryKey);
+  onUpdateData?: (oldData: TUpdateData | undefined, newData: TVariables) => TUpdateData;
+}
