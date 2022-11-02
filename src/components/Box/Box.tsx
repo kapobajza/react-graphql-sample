@@ -1,10 +1,10 @@
 import { CSSProperties, FC, PropsWithChildren } from 'react';
 
-interface BoxProperties extends CSSProperties {
+export interface BoxProps extends CSSProperties {
   testId?: string;
 }
 
-const Box: FC<PropsWithChildren<BoxProperties>> = ({ children, testId, ...style }) => {
+const Box: FC<PropsWithChildren<BoxProps>> = ({ children, testId, ...style }) => {
   return (
     <div style={style} data-testid={testId}>
       {children}

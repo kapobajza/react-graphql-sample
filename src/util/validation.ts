@@ -7,4 +7,6 @@ const { strings } = container.resolve(TranslationService);
 export const validationMessages = {
   required: (field: string) =>
     strings.formatString(strings.validationMessagesRequired, field) as string,
+  email: strings.validationMessagesEmail,
+  repeatPassword: strings.validationMessagesRepeatPassword,
 };

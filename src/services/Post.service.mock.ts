@@ -5,9 +5,10 @@ import { Post, User } from '../types/models';
 import { IPostService } from './Post.service';
 
 const getMockedUser = (): User => ({
-  id: faker.datatype.uuid(),
+  id: new Date().getTime(),
   name: faker.name.fullName(),
   imageUrl: faker.image.people(),
+  email: faker.internet.email(),
 });
 
 export const getMockedPost = (): Post => ({

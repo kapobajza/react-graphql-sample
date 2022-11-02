@@ -1,7 +1,10 @@
 import { FC, useContext, PropsWithChildren, createContext } from 'react';
 import { container } from 'tsyringe';
 
+import { AuthService } from './Auth.service';
 import { PostService } from './Post.service';
+import { PubSubService } from './PubSub.service';
+import { StorageService } from './Storage.service';
 import { ThemeService } from './Theme.service';
 import { TranslationService } from './Translation.service';
 import { Services, ServicesProviderProps } from './types';
@@ -30,5 +33,8 @@ export const getServices = (): Services => {
     themeService: container.resolve(ThemeService),
     postService: container.resolve(PostService),
     translationService: container.resolve(TranslationService),
+    authService: container.resolve(AuthService),
+    pubSubService: container.resolve(PubSubService),
+    storageService: container.resolve(StorageService),
   };
 };

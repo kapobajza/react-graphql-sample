@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { QueryKey, useInfiniteQuery as useReactInfiniteQuery } from 'react-query';
 
 import {
@@ -15,6 +16,7 @@ const useInfiniteQuery = <TData = unknown, TError = Error, TQueryKey extends Que
     'queryKey' | 'queryFn'
   >,
 ): UseInfiniteQueryResult<TData, TError> => {
+  const fetchNextPagePromiseRef = useRef<Promise<any> | null>(null);
   const { limit = 20 } = options || {};
   const { data, fetchNextPage, ...otherOptions } = useReactInfiniteQuery<
     PaginatedResult<TData>,
@@ -53,7 +55,15 @@ const useInfiniteQuery = <TData = unknown, TError = Error, TQueryKey extends Que
   );
 
   const onEndReached = async () => {
-    await fetchNextPage();
+    if (!fetchNextPagePromiseRef.current) {
+      fetchNextPagePromiseRef.current = (async () => {
+        try {
+          await fetchNextPage();
+        } finally {
+          fetchNextPagePromiseRef.current = null;
+        }
+      })();
+    }
   };
 
   return {

@@ -8,6 +8,8 @@
   "ok": "Ok",
   "cancel": "Cancel",
   "save": "Save",
+  "submit": "Submit",
+  "register": "Register",
   "goToPosts": "Go to Posts",
   "loading": "Loading...",
   "errorsTitle": "Error",
@@ -15,5 +17,13 @@
   "addPostTitle": "Title",
   "addPostBody": "Body",
   "addPostNew": "Add new post",
-  "validationMessagesRequired": "{0} is required"
+  "authEmail": "Email",
+  "authName": "Name",
+  "authPassword": "Password",
+  "authRepeatPassword": "Repeat password",
+  "authLoginTitle": "Log in",
+  "authNoAccountInfo": "Or if you don't have an account",
+  "validationMessagesRequired": "{0} is required",
+  "validationMessagesEmail": "Please enter a valid email",
+  "validationMessagesRepeatPassword": "Passwords must match"
 }

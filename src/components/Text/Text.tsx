@@ -69,13 +69,14 @@ const getVariantStyle = (
 };
 
 const Text = styled(NonStyledText)(
-  ({ $color, $fontWeight, $opacity, $textAlign, variant, theme }) => {
+  ({ $color, $fontWeight, $opacity, $textAlign, variant, theme, $fontSize }) => {
     return {
       ...getVariantStyle(variant, theme),
       color: $color,
       fontWeight: $fontWeight,
       opacity: $opacity,
       textAlign: $textAlign,
+      fontSize: $fontSize ? theme.getSizeInPx($fontSize) : undefined,
     };
   },
 ) as FC<TextProps>;

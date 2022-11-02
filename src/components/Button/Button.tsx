@@ -2,15 +2,33 @@ import { FC, PropsWithChildren } from 'react';
 import styled, { DefaultTheme } from 'styled-components';
 import { Property } from 'csstype';
 
+import { useTranslation } from '../../translation';
+
 interface Props {
   onClick: () => void;
   variant?: 'primary' | 'secondary';
+  className?: string;
+  disabled?: boolean;
+  loading?: boolean;
 }
 
-const Button: FC<PropsWithChildren<Props>> = ({ children, onClick, variant = 'primary' }) => {
+const Button: FC<PropsWithChildren<Props>> = ({
+  children,
+  onClick,
+  variant = 'primary',
+  className,
+  disabled,
+  loading,
+}) => {
+  const { strings } = useTranslation();
+
   return (
-    <StyledButton $variant={variant} onClick={onClick}>
-      {children}
+    <StyledButton
+      $variant={variant}
+      onClick={onClick}
+      className={className}
+      disabled={disabled || loading}>
+      {loading ? strings.loading : children}
     </StyledButton>
   );
 };
@@ -51,6 +69,7 @@ const StyledButton = styled.button<{ $variant: Props['variant'] }>`
 
   :disabled {
     opacity: 0.5;
+    cursor: not-allowed;
   }
 
   :focus-visible {

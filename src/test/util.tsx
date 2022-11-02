@@ -3,6 +3,7 @@ import { MemoryRouter, Route } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { container } from 'tsyringe';
+import { Provider as StoreProvider } from 'react-redux';
 
 import { Language, Services, ServicesProvider } from '../services';
 import { TranslationProvider } from '../translation';
@@ -14,6 +15,8 @@ import { EntitiesProvider, getEntities } from '../entities/Provider';
 import { getModalStack, ModalProvider } from '../components/Modal';
 import { ThemeService } from '../services/Theme.service';
 import { TranslationService } from '../services/Translation.service';
+import { storeTest } from '../store';
+import { PubSubService } from '../services/PubSub.service';
 
 const createTestQueryClient = () =>
   new QueryClient({
@@ -41,23 +44,26 @@ export const renderWithRouter = (params?: Partial<RenderWithRouterOptions>) => {
         {
           themeService: container.resolve(ThemeService),
           translationService: container.resolve(TranslationService),
+          pubSubService: container.resolve(PubSubService),
           ...services,
         } as Services
       }>
       <EntitiesProvider entities={getEntities()}>
-        <QueryClientProvider client={testQueryClient}>
-          <TranslationProvider language={Language.En}>
-            <ThemeProvider theme={defaultTheme}>
-              <ModalProvider stack={getModalStack()}>
-                <MemoryRouter initialEntries={[initialRoute]}>
-                  <Routes routes={routes}>
-                    {UI ? <Route path={initialRoute} element={UI} /> : null}
-                  </Routes>
-                </MemoryRouter>
-              </ModalProvider>
-            </ThemeProvider>
-          </TranslationProvider>
-        </QueryClientProvider>
+        <StoreProvider store={storeTest}>
+          <QueryClientProvider client={testQueryClient}>
+            <TranslationProvider language={Language.En}>
+              <ThemeProvider theme={defaultTheme}>
+                <ModalProvider stack={getModalStack()}>
+                  <MemoryRouter initialEntries={[initialRoute]}>
+                    <Routes routes={routes}>
+                      {UI ? <Route path={initialRoute} element={UI} /> : null}
+                    </Routes>
+                  </MemoryRouter>
+                </ModalProvider>
+              </ThemeProvider>
+            </TranslationProvider>
+          </QueryClientProvider>
+        </StoreProvider>
       </EntitiesProvider>
     </ServicesProvider>,
   );
