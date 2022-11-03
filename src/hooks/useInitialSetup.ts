@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthRoutePath from '../modules/auth/navigation/RoutePath';
 import HomeRoutePath from '../modules/home/navigation/RoutePath';
 import { useService } from '../services';
-import { clearUser, setUser } from '../store/slices';
+import { clearStoredUser, setUser, storeUser } from '../store/slices';
 
 import useDispatch from './useDispatch';
 import useMountEffect from './useMountEffect';
@@ -16,15 +16,21 @@ const useInitialSetup = () => {
   useMountEffect(() => {
     const signInEventUnsubscribe = pubSubService.subscribe('SignInEvent', (d) => {
       storageService.setAccessToken(d.accessToken);
-      dispatch(setUser(d.user));
+      dispatch(storeUser(d.user));
       navigate(HomeRoutePath.Home, { replace: true });
     });
 
     const signOutEventUnsubscribe = pubSubService.subscribe('SignOutEvent', () => {
       storageService.removeAccessToken();
-      dispatch(clearUser());
+      dispatch(clearStoredUser());
       navigate(AuthRoutePath.Login, { replace: true });
     });
+
+    const user = storageService.getUser();
+
+    if (user) {
+      dispatch(setUser(user));
+    }
 
     return () => {
       signInEventUnsubscribe();

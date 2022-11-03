@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { container } from 'tsyringe';
 
+import { StorageService } from '../../services/Storage.service';
 import { User } from '../../types/models';
-import { RootState } from '../store';
+import { AppDispatch, RootState } from '../store';
 
 type InitialState = {
   data: User | null;
@@ -32,3 +34,15 @@ export const { setUser, clearUser } = userSlice.actions;
 export const { reducer: userReducer } = userSlice;
 
 export const userSelector = (state: RootState) => state.user.data || undefined;
+
+const storageService = container.resolve(StorageService);
+
+export const storeUser = (user: User) => (dispatch: AppDispatch) => {
+  storageService.setUser(user);
+  dispatch(setUser(user));
+};
+
+export const clearStoredUser = () => (disptch: AppDispatch) => {
+  storageService.removeUser();
+  disptch(clearUser());
+};

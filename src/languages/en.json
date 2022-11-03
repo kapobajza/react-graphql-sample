@@ -11,6 +11,7 @@
   "submit": "Submit",
   "register": "Register",
   "goToPosts": "Go to Posts",
+  "areYouSure": "Are you sure?",
   "loading": "Loading...",
   "errorsTitle": "Error",
   "errorsGeneral": "An error occurred",
@@ -23,6 +24,8 @@
   "authRepeatPassword": "Repeat password",
   "authLoginTitle": "Log in",
   "authNoAccountInfo": "Or if you don't have an account",
+  "authLogOut": "Log out",
+  "authLogOutReally": "Do you really want to log out?",
   "validationMessagesRequired": "{0} is required",
   "validationMessagesEmail": "Please enter a valid email",
   "validationMessagesRepeatPassword": "Passwords must match"

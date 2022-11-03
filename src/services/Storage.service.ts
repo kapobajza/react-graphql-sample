@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
 
-import { StorageKey } from '../types/models';
+import { StorageKey, User } from '../types/models';
 import { isJsonParsable, parseJson } from '../util';
 
 export interface IStorageService {
@@ -8,6 +8,9 @@ export interface IStorageService {
   getAccessToken(): string | undefined;
   setAccessToken(token: string): void;
   removeAccessToken(): void;
+  getUser(): User | undefined;
+  setUser(user: User): void;
+  removeUser(): void;
 }
 
 @injectable()
@@ -50,5 +53,17 @@ export class StorageService implements IStorageService {
 
   removeAccessToken() {
     this.removeItem(StorageKey.AccessToken);
+  }
+
+  getUser() {
+    return this.getItem<User>(StorageKey.User);
+  }
+
+  setUser(user: User): void {
+    this.setItem(StorageKey.User, user);
+  }
+
+  removeUser(): void {
+    this.removeItem(StorageKey.User);
   }
 }

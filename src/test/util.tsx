@@ -17,6 +17,7 @@ import { ThemeService } from '../services/Theme.service';
 import { TranslationService } from '../services/Translation.service';
 import { storeTest } from '../store';
 import { PubSubService } from '../services/PubSub.service';
+import { StorageService } from '../services/Storage.service';
 
 const createTestQueryClient = () =>
   new QueryClient({
@@ -45,6 +46,7 @@ export const renderWithRouter = (params?: Partial<RenderWithRouterOptions>) => {
           themeService: container.resolve(ThemeService),
           translationService: container.resolve(TranslationService),
           pubSubService: container.resolve(PubSubService),
+          storageService: container.resolve(StorageService),
           ...services,
         } as Services
       }>
