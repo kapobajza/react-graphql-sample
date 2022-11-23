@@ -4,22 +4,14 @@ import styled from 'styled-components';
 
 import { useMountEffect } from '../../hooks';
 
-import { ModalOptions } from './types';
+import { ModalItemProps } from './types';
 
-interface Props {
-  index: number;
-  removeItem: () => void;
-  options: ModalOptions | undefined;
-}
-
-const ModalItem: FC<PropsWithChildren<Props>> = ({ children, index, options, removeItem }) => {
-  const { closeOnOutsideClick = true, animationType = 'slide-and-fade' } = options || {};
-
-  const closeModal = () => {
-    if (closeOnOutsideClick) {
-      removeItem();
-    }
-  };
+const ModalItem: FC<PropsWithChildren<ModalItemProps>> = ({
+  children,
+  options,
+  closeModal = () => {},
+}) => {
+  const { animationType = 'slide-and-fade' } = options || {};
 
   useMountEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -58,7 +50,7 @@ const ModalItem: FC<PropsWithChildren<Props>> = ({ children, index, options, rem
       : {};
 
   return (
-    <Container $index={index} onClick={closeModal} {...containerAnimationProps}>
+    <Container onClick={closeModal} {...containerAnimationProps}>
       <InnerContainer onClick={onInnerItemClick} {...innerContainerAnimationProps}>
         {children}
       </InnerContainer>
@@ -68,7 +60,7 @@ const ModalItem: FC<PropsWithChildren<Props>> = ({ children, index, options, rem
 
 export default ModalItem;
 
-const Container = styled(motion.div)<{ $index: number }>`
+const Container = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
@@ -78,7 +70,7 @@ const Container = styled(motion.div)<{ $index: number }>`
   justify-content: center;
   align-items: center;
   background-color: rgb(0, 0, 0, 0.6);
-  z-index: ${({ $index: index, theme }) => theme.zIndices.modal + index};
+  z-index: ${({ theme }) => theme.zIndices.modal};
 `;
 
 const InnerContainer = styled(motion.div)`

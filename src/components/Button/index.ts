@@ -1,5 +1,4 @@
-import Clickable from './Clickable';
-import Link from './Link';
-import Button from './Button';
-
-export { Clickable, Link, Button };
+export { default as Clickable } from './Clickable';
+export { default as Link } from './Link';
+export { default as Button } from './Button';
+export { default as LinkToModal } from './LinkToModal';

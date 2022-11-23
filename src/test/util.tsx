@@ -12,7 +12,6 @@ import { defaultTheme } from '../theme/default';
 import { RouteProp } from '../types/models';
 import { Routes } from '../navigation';
 import { EntitiesProvider, getEntities } from '../entities/Provider';
-import { getModalStack, ModalProvider } from '../components/Modal';
 import { ThemeService } from '../services/Theme.service';
 import { TranslationService } from '../services/Translation.service';
 import { storeTest } from '../store';
@@ -55,13 +54,11 @@ export const renderWithRouter = (params?: Partial<RenderWithRouterOptions>) => {
           <QueryClientProvider client={testQueryClient}>
             <TranslationProvider language={Language.En}>
               <ThemeProvider theme={defaultTheme}>
-                <ModalProvider stack={getModalStack()}>
-                  <MemoryRouter initialEntries={[initialRoute]}>
-                    <Routes routes={routes}>
-                      {UI ? <Route path={initialRoute} element={UI} /> : null}
-                    </Routes>
-                  </MemoryRouter>
-                </ModalProvider>
+                <MemoryRouter initialEntries={[initialRoute]}>
+                  <Routes routes={routes}>
+                    {UI ? <Route path={initialRoute} element={UI} /> : null}
+                  </Routes>
+                </MemoryRouter>
               </ThemeProvider>
             </TranslationProvider>
           </QueryClientProvider>

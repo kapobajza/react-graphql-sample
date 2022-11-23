@@ -1,6 +1,6 @@
 import { useAlert } from '../../../components/Alert';
 import { Box } from '../../../components/Box';
-import { Button, Link } from '../../../components/Button';
+import { Button, Link, LinkToModal } from '../../../components/Button';
 import { Text } from '../../../components/Text';
 import { useTheme } from '../../../theme/Provider';
 import { useTranslation } from '../../../translation';
@@ -23,6 +23,7 @@ const HomePage = () => {
         <Text variant="heading">{strings.welcome}</Text>
       </Box>
       <Link to={PostRoutePath.Posts}>{strings.goToPosts}</Link>
+      <LinkToModal to={PostRoutePath.AddPostModal}>Open example modal</LinkToModal>
       <Button
         onClick={() =>
           showAlert({

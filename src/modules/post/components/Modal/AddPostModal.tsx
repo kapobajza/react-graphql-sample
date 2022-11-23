@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { ControlInput } from '../../../../components/Input';
 import { Text } from '../../../../components/Text';
-import { ModalComponentProps } from '../../../../components/Modal/types';
 import { useForm } from '../../../../hooks';
 import { useTranslation } from '../../../../translation';
 import addPostSchema from '../../validation/addPostSchema';
@@ -18,7 +17,7 @@ interface FormInputs {
   [AddPostField.Body]: string;
 }
 
-const AddPostModal: FC<ModalComponentProps<'AddPost'>> = ({ closeModal }) => {
+const AddPostModal: FC = () => {
   const { strings } = useTranslation();
   const { spacing } = useTheme();
   const { mutate: addPost } = useAddPost();
@@ -32,7 +31,7 @@ const AddPostModal: FC<ModalComponentProps<'AddPost'>> = ({ closeModal }) => {
 
   const onSubmit = handleSubmit((data) => {
     addPost(data);
-    closeModal();
+    // closeModal();
   });
 
   return (

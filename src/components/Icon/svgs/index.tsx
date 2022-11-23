@@ -14,7 +14,7 @@ export const CloseIconSvg: FC<SvgProps> = ({ size, color, ...rest }) => (
     width={size}
     height={size}
     viewBox="0 0 121.31 122.876"
-    enable-background="new 0 0 121.31 122.876"
+    enableBackground="new 0 0 121.31 122.876"
     {...rest}>
     <g>
       <path
